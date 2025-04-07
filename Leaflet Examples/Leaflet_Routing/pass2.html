@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/35821647e0.js" crossorigin="anonymous"></script>
+
+    <style>
+        @media (min-width:412px) and (max-width: 413px) {
+
+            body {
+                margin: 0%;
+                padding: 0%;
+                background-color: cyan;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .container {
+                background-color: cyan;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .first {
+                width: 100%;
+                height: 19%;
+                /* background-color: red; */
+            }
+
+            .second {
+                width: 100%;
+                height: 63%;
+                padding-top: 1px;
+                padding-bottom: 1px;
+                /* background-color: blue; */
+            }
+
+            .third {
+                width: 100%;
+                height: 18%;
+                /* background-color: yellow; */
+            }
+
+            .body {
+                width: 90%;
+                height: 100%;
+                margin-left: 20px;
+                border-radius: 10px;
+                /* margin-top: 5px; */
+                background-color: white;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .card-header {
+                width: 100%;
+                height: 13%;
+                padding-top: 5px;
+                background-color: rgb(227, 23, 23);
+            }
+
+            .card-body {
+                width: 100%;
+                height: 82%;
+                /* background-color: gray; */
+            }
+
+            .card-footer {
+                width: 100%;
+                height: 5%;
+                padding-top: 3px;
+                background-color: rgb(227, 23, 23);
+            }
+
+            .title {
+                text-align: center;
+                padding-top: 7px;
+                font-size: 22px;
+                /* font-weight: bold; */
+                color: white;
+            }
+
+            .footer {
+                color: white;
+                text-align: center;
+            }
+
+            .card-body-header {
+                width: 100%;
+                height: 23%;
+                /* background-color: blueviolet; */
+            }
+
+            .card-body-body {
+                width: 100%;
+                height: 28%;
+                /* background-color: brown; */
+            }
+
+            .card-body-footer {
+                width: 100%;
+                height: 49%;
+                /* background-color: black; */
+                border-top: 2px solid rgba(0, 0, 0, 0.5);
+                border-style: dashed;
+                border-left: none;
+                border-bottom: none;
+                border-right: none;
+            }
+
+            .row {
+                float: left;
+            }
+
+            .type {
+                width: 50%;
+                height: 100%;
+
+                /* background-color: yellow; */
+
+            }
+
+            .card-title {
+                opacity: 0.5;
+                font-size: 15px;
+            }
+
+            .ID {
+                width: 25%;
+                height: 100%;
+                /* background-color: aliceblue; */
+            }
+
+            .Fare {
+                width: 25%;
+                height: 100%;
+                /* background-color: blueviolet; */
+            }
+
+            .value {
+                font-weight: bold;
+                font-size: 23px;
+            }
+
+            .top {
+                padding: 25px 10px;
+                padding-right: 0px;
+                border-top: 2px solid rgba(0, 0, 0, 0.5);
+                border-style: dashed;
+                border-left: none;
+                border-bottom: none;
+                border-right: none;
+            }
+            .refID{
+                margin-top: 30px;
+                /* background-color: red; */
+            }
+            .Rid{
+                text-align: center;
+                font-size: 15px;
+            }
+
+            .booking-time{
+                width: 50%;
+                height: 75%;
+                font-size: small;
+                font-weight: bold;
+            }
+            .image{
+                width: 100%;
+                height: 100%;
+            }
+            .image img{
+                width: 100%;
+                height: 89%;
+                margin-top: 7px;
+                animation: scaleAnimation 1s linear infinite alternate;
+                /* margin-left: 15px; */
+            }
+
+            @keyframes scaleAnimation {
+                0% {
+                    transform: scale(1);
+                }
+
+                100% {
+                    transform: scale(0.5);
+                }
+
+            }
+
+            .logo{
+                margin-top: 75px;
+                box-shadow: 2px 8px 5px rgb(222, 206, 206);
+                margin-right: 20px;
+                width: 50px;
+                height: 50px;
+                background-color: white;
+                float: right;
+                border-radius: 50%;
+                i{
+                    margin-top: 17px;
+                    margin-left: 17px;
+                }
+                
+            }
+            .head {
+                width: 100%;
+                height: 18vh;
+                span i{
+                    padding-top: 15px;
+                    padding-left: 15px;
+                    opacity: 0.5;
+                }
+                .pass{
+                    margin-left: 294px;
+                    
+                }
+                hr{
+                    width: 73px;
+                    height: 0.7px;
+                    opacity: 0.5;
+                    margin-right: 14px;
+                    margin-top: -2px;
+                    background-color: black;
+                }
+                /* background-color: red; */
+            }
+            .side{
+                position: absolute;
+                top: 0;
+                margin-top: 165px;
+                margin-left: -35px;
+                width: 13%;
+                height: 25px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 20px;
+                background-color: white;
+            }
+            .side2{
+                position: absolute;
+                top: 0;
+                margin-top: 165px;
+                margin-left: 358px;
+                width: 13%;
+                height: 25px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 20px;
+                background-color: white;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="first">
+            <div class="head">
+                <span><i class="fa-solid fa-xmark"></i></span>
+                <span class="pass">All passes</span>
+                <hr>
+            </div>
+        </div>
+        <div class="second">
+            <div class="body">
+                <hr class="side">
+                <hr class="side2">
+                <div class="card-header">
+                    <div class="title">
+                        <span>Pune Mahanagar Parivahan <br>
+                            Mahamandal Ltd</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-header">
+                        <div class="row type">
+                            <div class="top" style="border: none;">
+                                <span class="card-title">Pass Type</span>
+                                <br>
+                                <span class="value">PMC and PCMC</span>
+                            </div>
+                        </div>
+                        <div class="row ID" >
+                            <div class="top" style="padding-left: 0px; border: none;">
+                                <span class="card-title">ID</span>
+                                <br>
+                                <span class="value">2011</span>
+                            </div>
+                        </div>
+                        <div class="row Fare">
+                            <div class="top" style="padding-left: 0px; border: none;">
+                                <span class="card-title">Fare</span>
+                                <br>
+                                <span class="value">₹50</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body-body">
+                        <div class="top">
+                            <div class="row booking-time">
+                                <span class="card-title" style="font-weight: normal; font-size: small;">Booking Time</span>
+                                <br>
+                                <span class="val-time">08 Jan, 25 | 07:48 AM</span>
+                            </div>
+                            <div class="row booking-time">
+                                <span class="card-title" style="font-weight: normal; font-size: small;">Validity Time</span>
+                                <br>
+                                <span class="val-time">08 Jan, 25 | 11:59 PM</span>
+                            </div>
+                        </div>
+                        <div class="refID">
+                            <div class="Rid"><span >2501070748S07NU7</span></div>
+                        </div>
+                    </div>
+                    <div class="card-body-footer">
+                        <div class="image">
+                            <img src="https://play-lh.googleusercontent.com/lFSZVZeLbHkZN9Iz7kGqJ0aVEEy_AaZYPAX9lyomfZvNCARgoihUKm4oV6z4mlAl_hTV=w600-h300-pc0xffffff-pd" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="footer">
+                        <span>One Day Pass</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="third">
+            <div class="logo">
+                <i class="fa-solid fa-user"></i>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

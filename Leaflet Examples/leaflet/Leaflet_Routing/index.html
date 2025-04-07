@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div id="map">
+
+    </div>
+    <div class="form-block">
+        <div action="" id="form">
+            <input type="text" placeholder="Starting point" name="start" id="start" class="input"><br><br>
+            <input type="text" placeholder="Destination point" name="end" id="end" class="input"><br><br>
+            <button type="submit" onclick="submitForm()">Get Direction</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
+    <script
+        src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

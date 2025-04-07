@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
+    <!-- Leaflet Control Geocoder: -->
+
+
+    <style>
+        body {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        #map {
+            height: 80vh;
+            width: 1000px;
+            /* margin-left: 20px; */
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    
+    <div id="map">
+
+    </div>
+
+    <script>
+
+        var map = L.map('map').setView([51.505, -0.09], 3);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = [];
+        var mapLocked = false;
+        var routingControl = null;
+        var geocoder = L.Control.geocoder({
+            defaultMarkGeocode: false,
+        }).on('markgeocode', function (e) {
+            
+            if (mapLocked) {
+                alert("click reset");
+                return;
+            }
+            var latlng = e.geocode.center;
+            var newMarker = L.marker(latlng).addTo(map);
+
+            markers.push(newMarker);
+
+            if (markers.length === 2) {
+                routingControl = L.Routing.control({
+                    waypoints: markers.map(marker => marker.getLatLng()),
+                }).addTo(map);
+            }
+        }).addTo(map);
+    </script>
+
+
+</body>
+
+
+</html>

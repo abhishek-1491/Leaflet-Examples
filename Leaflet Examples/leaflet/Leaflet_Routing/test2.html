@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reload Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center;     /* Vertically center */
+            min-height: 100vh;      /* Ensure full viewport height */
+            margin: 0;             /* Remove default body margins */
+            background-color: #f0f0f0; /* Light background for contrast */
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        button:hover{
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="reloadPage()">Reload Page</button>
+
+    <script>
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
+
+</body>
+</html>

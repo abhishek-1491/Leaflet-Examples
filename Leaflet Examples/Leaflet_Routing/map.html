@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      width: 100%;
+      /* margin-top: 25px; */
+      height: 80vh;
+      position: relative;
+      z-index: 0;
+    }
+
+    button {
+      position: absolute;
+      top: 0;
+      margin-top: 25px;
+      margin-left: 45px;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <button onclick="resetMap()">Reset</button>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+  <script>
+    var map = L.map('map').setView([18.47737077990186, 73.89475121337219], 11);
+    mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Leaflet &copy; ' + mapLink + ', contribution', maxZoom: 18 }).addTo(map);
+
+    var taxiIcon = L.icon({
+      iconUrl: '/images/taxi.jpg',
+      iconSize: [70, 70]
+    })
+
+    // var markers = [];
+    // var variable_lat = [];
+    // var variable_lng = [];
+
+
+
+    // map.on('click', function (e) {
+
+    //   if (markers.length < 2) {
+    //     console.log(e);
+    //     let coordinates = e.latlng
+
+    //     variable_lat.push(coordinates['lat']);
+    //     variable_lng.push(coordinates['lng']);
+    //     var sourceMarker = L.marker([coordinates['lat'], coordinates['lng']]).addTo(map);
+
+    //     var count = markers.push(sourceMarker);
+
+    //     console.log(markers.length);
+    //     console.log(count);
+    //   }
+
+    //   console.log(variable_lat, variable_lng);
+
+    //   if(markers.length == 2){
+    //     L.Routing.control({
+    //     waypoints : [
+    //       L.latlng(variable_lat[0], variable_lng[0]),
+    //       L.latlng(variable_lat[1], variable_lng[1])
+    //     ]
+    //   }).addTo(map);
+    //   }
+
+    // });
+
+
+
+    var markers = [];
+    var variable_lat = [];
+    var variable_lng = [];
+
+    // var marker = L.marker([18.47737077990186, 73.89475121337219], { icon: taxiIcon }).addTo(map);
+
+
+
+
+    map.on('click', function (e) {
+
+      // var marker = L.marker([e.latlng.lat, e.latlng.lng], { icon: taxiIcon }).addTo(map);
+
+      console.log("Run");
+      if (markers.length < 2) {
+        console.log(e.latlng);
+        markers.push(e.latlng);
+        // var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+
+        if (markers.length == 1) {
+          var newMarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: taxiIcon }).addTo(map);
+        }
+        if (markers.length == 2) {
+          marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+        }
+
+        if (markers.length == 2) {
+          console.log("START");
+          console.log(markers[0].lng);
+          console.log("END");
+          var rou = L.Routing.control({
+            waypoints: [
+              L.latLng(markers[0].lat, markers[0].lng),
+              L.latLng(markers[1].lat, markers[1].lng)
+            ],
+            createMarker: function () {
+              return null;
+            }
+          }).addTo(map);
+
+
+          // rou.on('routesfound', function (e) {
+          // 	var routes = e.routes;
+          // 	console.log(routes);
+
+          // 	e.routes[0].coordinates.forEach(function (coord, index) {
+          // 		// console.log(coord.lat, coord.lng);
+          //     marker.setLatLng([coord.lat, coord.lng]);
+          // 	})
+
+          // }).addTo(map);
+
+        }
+      }
+
+    });
+
+    function resetMap() {
+
+      location.reload();
+
+    }
+
+  </script>
+
+</body>
+
+</html>

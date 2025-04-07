@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <style>
+        #map {
+            width: 500px;
+            height: 500px;
+        }
+        .form{
+            border: 1px solid;
+            width: 40%;
+        }
+    </style>
+</head>
+
+<body onload="assignCoords()">
+    <div id="map">
+
+    </div>
+
+    <div id="form" class="form">
+        <label for="">Source : </label>
+        <input type="text/number" id="source"><br>
+        <label for="">Destination : </label>
+        <input type="text/number" id="destination"><br>
+        <button onclick="findRoute()">Find Route</button>
+    </div>
+
+
+
+    <script>
+        var sourceLat;
+        var sourceLng;
+        var marker;
+
+        function assignCoords() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((showPosition));
+            }
+            else {
+                alert("Your browser is not supported to map");
+            }
+            
+        }
+
+        function showPosition(val) {
+
+            sourceLat = val.coords.latitude;
+            sourceLng = val.coords.longitude;
+            
+            var map = L.map('map').setView([sourceLat, sourceLng], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            document.getElementById('source').value = sourceLat +" " +sourceLng
+            L.marker([sourceLat, sourceLng]).addTo(map);
+            
+        }
+
+        console.log(sourceLat);
+        console.log(sourceLng);
+
+    </script>
+</body>
+
+
+</html>

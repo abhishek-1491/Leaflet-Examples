@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Routing Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <style>
+        #map {
+            height: 80vh;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+
+        }
+
+        #form {
+            margin-top: 10px; 
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            border: 1px solid;
+            width: 20%;
+            margin-top: 30px;
+            margin-left: 50px;
+            padding: 5px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            border-radius: 20px;
+            /* padding-right: -100px; */
+            padding-left: 30px;
+            box-shadow: 0 0 5px black;
+            background-color: aqua;
+
+            
+            input {
+                width: 50%;
+            }
+
+        }
+        .label
+        {
+            width: 25%;
+            /* background-color: red; */
+        }
+        .row{
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+    <div class="demo">
+        <div id="form">
+            <div class="label row"><label for="source">Source:</label></div>
+            <input type="text" id="source" name="source"><br><br>
+            <div class="label row"><label for="destination">Destination:</label></div>
+            <input type="text" id="destination" name="destination"><br><br>
+            <button onclick="createRoute()">Create Route</button>
+            <button onclick="resetMap()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        var map = L.map('map').setView([18.4624805,73.8896833], 20); // Default view, adjust as needed
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var routingControl = null;
+
+        function createRoute() {
+            var source = document.getElementById("source").value;
+            var destination = document.getElementById("destination").value;
+
+            if (!source || !destination) {
+                alert("Please enter both source and destination.");
+                return;
+            }
+
+            // Geocoding using Nominatim (you can use other providers)
+            geocode(source, function (sourceLatLng) {
+                geocode(destination, function (destinationLatLng) {
+                    if (sourceLatLng && destinationLatLng) {
+                        if (routingControl) {
+                            map.removeControl(routingControl); // Remove existing route
+                        }
+                        routingControl = L.Routing.control({
+                            waypoints: [
+                                L.latLng(sourceLatLng.lat, sourceLatLng.lng),
+                                L.latLng(destinationLatLng.lat, destinationLatLng.lng)
+                            ],
+                            routeWhileDragging: true
+                        }).addTo(map);
+
+                    } else {
+                        alert("Could not find coordinates for one or both locations.");
+                    }
+                });
+            });
+        }
+
+        function geocode(address, callback) {
+            var url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data && data.length > 0) {
+                        // console.log(typeof(data[0].lat),parseFloat(data[0].lon),typeof(parseFloat(data[0].lon)));
+                        callback({ lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) });
+                    } else {
+                        callback(null);
+                    }
+                })
+                .catch(error => {
+                    console.error("Geocoding error:", error);
+                    callback(null);
+                });
+        }
+
+
+        
+    </script>
+
+</body>
+
+</html>
